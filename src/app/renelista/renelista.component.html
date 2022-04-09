@@ -1,0 +1,70 @@
+<h2>Disciplinas</h2>
+
+<form>
+  <label>Código: </label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Digite o Código da Disciplina"
+    #codigo
+  />
+
+  <br><br>
+
+  <label>Disciplina: </label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Digite o nome da Disciplina"
+    #nome
+  />
+  <br><br>
+
+  <label>Dia da semana: </label>
+  <select class="form-control" #dia>
+    <option value="Segunda-feira">Segunda-feira</option>
+    <option value="Terça-feira">Terça-feira</option>
+    <option value="Quarta-feira">Quarta-feira</option>
+    <option value="Quinta-feira">Quinta-feira</option>
+    <option value="Sexta-feira">Sexta-feira</option>
+    <option value="Sábado">Sábado</option>
+  </select>
+
+  <br><br>
+
+  <label>Horário: </label>
+  <input type="time" class="form-control" #horario />
+</form>
+
+<br><br>
+
+<button
+(click)="renelista.adicionarDisciplina(codigo.value, nome.value, dia.value, horario.value);
+codigo.value = '';
+nome.value = '';
+horario.value = '';
+dia.selectedIndex = 0"
+>Inserir</button>
+
+<h2> Disciplinas atuais</h2>
+<table>
+  <thead>
+    <tr>
+      <td>Código</td>
+      <td>Disciplina</td>
+      <td>Dia</td>
+      <td>Horário</td>
+
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of renelista.getDisciplinas(); index as i">
+    <td><a [routerLink]="['/list', i]">{{item.codigo}}</a></td>
+    <td><a [routerLink]="['/list', i]">{{item.nome}}</a></td>
+    <td>{{item.dia}}</td>
+    <td>{{item.horario}}</td>
+    <td style="border: none"><button (click)="this.renelista.removerDisciplina(i)">x</button></td>
+  </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,12 @@
+table{
+text-align: center;
+}
+
+tbody > tr > td{
+  border: 1px solid;
+}
+
+thead {
+  font-weight: bold;
+}
+
